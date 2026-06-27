@@ -1,0 +1,33 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+
+# Data (generated, can be re-created)
+data/tourism_trends.csv
+data/airlines.sqlite
+data/chat_sessions/
+data/extracted_assets/
+data/sample_guides/
+vectorstore/
+
+# Checkpoints
+checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,45 @@
+# ============================================
+# Multi-Agent AI System — Dependencies
+# ============================================
+
+# Core AI Framework
+langchain>=0.3.0
+langchain-groq>=0.2.0
+langchain-openai>=0.2.0
+langchain-huggingface>=0.1.0
+langgraph>=0.3.0
+
+# Checkpointing (MongoDB)
+langgraph-checkpoint-mongodb>=2.0.0
+pymongo>=4.9.0
+motor>=3.6.0
+
+# Vector Store & Embeddings
+faiss-cpu>=1.9.0
+langchain-community>=0.3.0
+sentence-transformers>=3.0.0
+
+# Data & SQL
+pandas>=2.2.0
+sqlalchemy>=2.0.0
+
+# Document Processing
+pymupdf>=1.25.0
+langchain-text-splitters>=0.3.0
+pdfplumber>=0.11.0
+pillow>=10.0.0
+pytesseract>=0.3.10
+
+# Web & API Tools
+requests>=2.32.0
+wikipedia>=1.4.0
+
+# Streamlit UI
+streamlit>=1.40.0
+
+# Config & Utilities
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+
+# Testing
+pytest>=8.0.0
