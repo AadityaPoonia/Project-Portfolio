@@ -1,6 +1,6 @@
 # Project Portfolio
 
-Hi, I'm [Aaditya Poonia](https://github.com/AadityaPoonia) — a Senior AI Engineer focused on agentic AI, retrieval-augmented generation, and production-ready data applications. This repository collects my end-to-end projects across AI engineering, machine learning, big data, and software development.
+Hi, I'm [Aaditya Poonia](https://github.com/AadityaPoonia) — I build AI systems that reason, retrieve, and act: agentic AI, retrieval-augmented generation, and production-ready data applications. This repository collects my end-to-end projects across AI engineering, machine learning, big data, and software development.
 
 ## Featured Projects
 
