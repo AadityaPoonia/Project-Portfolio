@@ -1,6 +1,14 @@
-# RAG Q&A App
+# RAG Pipeline with Reranking & Evaluation
 
-A compact Retrieval-Augmented Generation (RAG) system that ingests four classic books, builds a vector index, retrieves top‑k chunks, optionally re‑ranks with BM25 + Cross‑Encoder, and generates grounded answers with inline citations. A mini evaluation harness checks whether retrieved/cited chunks overlap the expected references in questions.json.
+A compact Retrieval-Augmented Generation (RAG) system that ingests four classic books, builds a vector index, retrieves top‑k chunks, re‑ranks them with a BM25 + Cross‑Encoder fusion, and generates grounded answers with inline citations.
+
+Three things distinguish it from a toy RAG demo:
+
+- **Reranking that fuses three signals** — cross-encoder relevance, vector similarity, and BM25 lexical score, weighted and combined, rather than trusting embedding cosine similarity alone.
+- **An "I don't know" policy** — the system refuses to answer when retrieval confidence is too low, instead of confabulating from weak chunks.
+- **A built-in evaluation harness** — `questions.json` defines expected source chunks per question, and the harness reports **hit@k** on whether retrieval actually surfaced them.
+
+It also runs **fully offline** (TF-IDF embeddings + extractive generation) when no OpenAI key is available.
 
 ## Quick start (VS Code — one click)
 
@@ -10,12 +18,11 @@ A compact Retrieval-Augmented Generation (RAG) system that ingests four classic 
 
 **Place the data**
 ```
-option_b_rag_qa/
-  data/raw/
-    AcresOfDiamonds.pdf
-    p-t-barnum_art-of-money-getting.pdf
-    science-of-getting-rich.pdf
-    Smiles_0379.pdf
+data/raw/
+  AcresOfDiamonds.pdf
+  p-t-barnum_art-of-money-getting.pdf
+  science-of-getting-rich.pdf
+  Smiles_0379.pdf
 ```
 
 **Environment**

@@ -1,6 +1,14 @@
-# Multi-Agent AI Platform
+# Agentic Travel & Tourism AI Platform
 
-A Streamlit chatbot built with LangGraph and LangChain. It routes each user question to a specialist agent that can call tools for live weather, Wikipedia lookup, travel budget calculations, CSV analysis, SQLite analysis, and document RAG over uploaded files.
+A production-minded multi-agent AI assistant built with **LangGraph** and **LangChain**. It routes each user question to a specialist agent that can call tools for live weather, Wikipedia lookup, travel budget calculations, CSV analysis, SQLite analytics, and multimodal document RAG over uploaded files.
+
+What makes it more than a chatbot demo:
+
+- **Hybrid routing** — deterministic rules handle obvious requests; an LLM classifier resolves the ambiguous ones, so the common path never pays for a routing round-trip.
+- **Least-privilege tools** — SQL runs read-only behind a SQLite authorizer; generated pandas is AST-validated with no builtins, imports, or file I/O, executed on a copied DataFrame under a timeout.
+- **Layered prompt-injection defence** — pre-agent guardrails, untrusted-content wrapping for retrieved text, explicit instructions not to obey retrieved content, and deterministic tests covering all of it.
+- **Multimodal RAG** — OCR, table extraction, and vision captioning over uploaded PDFs and images, in session-scoped FAISS namespaces.
+- **Full observability** — token usage, model-aware cost estimates, selected agent, tool calls, executed SQL/pandas, and retrieved chunks are all surfaced in the UI.
 
 The default LLM provider is Groq via `langchain-groq`. The app can also use OpenAI when both an OpenAI API key and model are supplied through `.env` or environment variables. If OpenAI key/model are missing, it falls back to the existing `.env` Groq configuration.
 
