@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Scheduled refresh (Phase 5). Cron example — weekly, Monday 03:00:
-#   0 3 * * 1 cd /home/gl_aaditya/data-dictionary && ./refresh.sh >> logs/refresh.log 2>&1
+#   0 3 * * 1 cd /home/data-dictionary && ./refresh.sh >> logs/refresh.log 2>&1
 #
 # Order matters: extract first, then diff (so schema drift is visible in the
 # log), then relationships + descriptions for anything new, then re-export.
