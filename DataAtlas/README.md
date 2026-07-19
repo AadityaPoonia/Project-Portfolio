@@ -253,12 +253,3 @@ back to view it: `scp ... USER@EC2_HOST:~/data-dictionary/catalog.html ~/Downloa
 `test_query_guard.py` = security spec (must-never-reach-production cases).
 `test_pipeline_pii.py` = the PII-never-leaks guarantee, end to end.
 
-## Status & roadmap
-
-- [x] Phases 1–5 built and running against `gl_ai_agent` (25 tables,
-      309 approved descriptions, 51 relationships)
-- [ ] Schedule `refresh.sh` in cron
-- [ ] Add remaining datasets (OPS MySQL, QuickSight MySQL, DWH Redshift)
-- [ ] Cross-source relationship validation via full-column sketches (today:
-      sample overlap only, capped at low confidence)
-- [ ] Move secrets from `.env` to AWS Secrets Manager / instance profile
