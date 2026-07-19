@@ -1,0 +1,31 @@
+# Copy to sources.yml and edit. sources.yml is gitignored (it names real
+# schemas/tables); credentials live in .env, never here.
+
+audit_log_path: logs/audit.jsonl
+
+sources:
+  - name: app_mysql
+    engine: mysql
+    env_prefix: APP_DB          # expects APP_DB_HOST/_PORT/_USER/_PASSWORD/_NAME in .env
+    schemas: [app]
+    table_allowlist:
+      app:                      # omit a schema key or set to null for "all tables"
+        - users
+        - orders
+        - products
+    column_overrides:           # human-reviewed tier overrides (win over heuristics)
+      product_code: public
+    sample_size: 100
+    row_cap: 10000
+    timeout_s: 60
+
+  - name: analytics_postgres
+    engine: postgres
+    env_prefix: ANALYTICS_DB
+    schemas: [public]
+
+  - name: warehouse_redshift
+    engine: redshift
+    env_prefix: DWH
+    schemas: [public]
+    timeout_s: 120
