@@ -1,8 +1,0 @@
-sqlalchemy>=2.0
-pymysql
-psycopg2-binary
-sqlglot
-python-dotenv
-pyyaml
-pytest
-openai>=1.0   # Phase 3/4 description drafting & narration only
