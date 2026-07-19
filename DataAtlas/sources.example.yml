@@ -1,0 +1,31 @@
+# Copy to sources.yml and edit. sources.yml is gitignored (it names real
+# schemas/tables); credentials live in .env, never here.
+
+audit_log_path: logs/audit.jsonl
+
+sources:
+  - name: ops_mysql
+    engine: mysql
+    env_prefix: OPS_DB          # expects OPS_DB_HOST/_PORT/_USER/_PASSWORD/_NAME in .env
+    schemas: [ops]
+    table_allowlist:
+      ops:                      # omit a schema key or set to null for "all tables"
+        - users
+        - courses
+        - enrollments
+    column_overrides:           # human-reviewed tier overrides (win over heuristics)
+      course_code: public
+    sample_size: 100
+    row_cap: 10000
+    timeout_s: 60
+
+  - name: quicksight_mysql
+    engine: mysql
+    env_prefix: QS_DB
+    schemas: [quicksight]
+
+  - name: dwh_redshift
+    engine: redshift
+    env_prefix: DWH
+    schemas: [public]
+    timeout_s: 120
