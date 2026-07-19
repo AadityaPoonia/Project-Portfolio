@@ -54,7 +54,7 @@ What you get out of it:
 - Production credentials are used ONLY by the extraction/validation jobs —
   never by the LLM, which only ever sees the sandbox.
 - Every query to production goes through a guard
-  (`connections.py::GuardedSource.fetch`): AST-validated (single SELECT only —
+  (`connections.py::GuardedSource.fetch`): AST-validated (sine SELECT only —
   DML/DDL/SET/stacked statements rejected), row-capped, statement-timeouted,
   and written to the audit log (allowed, blocked, or errored).
 - PII protection is escalate-only: a pattern hit makes a column MORE
@@ -132,9 +132,9 @@ linked by `env_prefix`. No code changes ever.
 **`sources.yml`:**
 ```yaml
 sources:
-  - name: gl_ai_agent          # any unique name; used in --source and the catalog
+  - name: ai_agent          # any unique name; used in --source and the catalog
     engine: postgres           # mysql | postgres | redshift
-    env_prefix: GLAI_DB        # -> reads GLAI_DB_HOST etc. from .env
+    env_prefix: AI_DB        # -> reads AI_DB_HOST etc. from .env
     schemas: [public]          # which schemas to document
     # table_allowlist:         # omit entirely = ALL tables in those schemas
     #   public: [users, threads]     # or: only these tables
@@ -147,8 +147,8 @@ sources:
 
 **`.env`:** add the five variables for that prefix:
 ```
-GLAI_DB_HOST=...    GLAI_DB_PORT=5432    GLAI_DB_USER=...
-GLAI_DB_PASSWORD=...    GLAI_DB_NAME=...
+AI_DB_HOST=...    AI_DB_PORT=5432    AI_DB_USER=...
+AI_DB_PASSWORD=...    AI_DB_NAME=...
 ```
 
 If a variable is missing, the job exits immediately naming exactly which ones.
@@ -195,12 +195,12 @@ $PY -m datadict.changes
 ### Ways to run it
 
 - **Everything vs one dataset**: every pipeline command takes
-  `--source NAME` (e.g. `--source gl_ai_agent`); without it, all configured
+  `--source NAME` (e.g. `--source ai_agent`); without it, all configured
   datasets are processed one after another.
 - **One shot**: `./refresh.sh` runs extract → changes → relationships →
   describe → export in order.
 - **On a schedule** (the end-state): `crontab -e` and add
-  `0 3 * * 1 cd /home/gl_aaditya/data-dictionary && ./refresh.sh >> logs/refresh.log 2>&1`
+  `0 3 * * 1 cd /home/data-dictionary && ./refresh.sh >> logs/refresh.log 2>&1`
   (weekly, Monday 03:00). Refreshes are cheap: already-described tables and
   already-processed runs are skipped, so an unchanged week costs no LLM tokens.
 - **Redo something**: `describe --force --table X` re-drafts one table;
