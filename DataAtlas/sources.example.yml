@@ -4,10 +4,10 @@
 audit_log_path: logs/audit.jsonl
 
 sources:
-  - name: ops_mysql
+  - name: mysql
     engine: mysql
-    env_prefix: OPS_DB          # expects OPS_DB_HOST/_PORT/_USER/_PASSWORD/_NAME in .env
-    schemas: [ops]
+    env_prefix: main          # expects DB_HOST/_PORT/_USER/_PASSWORD/_NAME in .env
+    schemas: [head]
     table_allowlist:
       ops:                      # omit a schema key or set to null for "all tables"
         - users
@@ -19,12 +19,12 @@ sources:
     row_cap: 10000
     timeout_s: 60
 
-  - name: quicksight_mysql
+  - name: users
     engine: mysql
-    env_prefix: QS_DB
+    env_prefix: USER_DB
     schemas: [quicksight]
 
-  - name: dwh_redshift
+  - name: redshift
     engine: redshift
     env_prefix: DWH
     schemas: [public]
